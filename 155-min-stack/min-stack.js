@@ -4,6 +4,8 @@
 // if it's less than or equal to, push the val BUT if it's not, just push another instance of the last value 
 // This way the "top" value in the stack or the last in the array is always the minimum
 
+// you can also solve it where you only push values that are less than the current min
+
 var MinStack = function() {
     this.stack = []
     this.minStack = []
@@ -17,6 +19,8 @@ MinStack.prototype.push = function(val) {
     this.stack.push(val)
     if (this.minStack.length === 0 || val <= this.minStack[this.minStack.length - 1]){
         this.minStack.push(val)
+    } else {
+        this.minStack.push(this.getMin())
     }
 };
 
@@ -24,10 +28,8 @@ MinStack.prototype.push = function(val) {
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-     const popped = this.stack.pop();
-    if (popped === this.minStack[this.minStack.length - 1]) {
-        this.minStack.pop();
-    }
+     this.minStack.pop()
+    return this.stack.pop()
 };
 
 /**
