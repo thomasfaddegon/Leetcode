@@ -32,9 +32,13 @@ var isSubtree = function(root, subRoot) {
         return false;
     }
 
+    // if subroot is empty it technically exists in the main tree
     if (!subRoot) return true;
+    
+    // if root is empty the subtree cannot exist
     if (!root) return false;
 
+    // if they're the same tree return true
     if (sameTree(root, subRoot)) return true;
 
     return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
